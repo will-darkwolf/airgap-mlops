@@ -1,0 +1,4 @@
+store/**
+*.tar.zst
+*.tar.gz
+.DS_Store
