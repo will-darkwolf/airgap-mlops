@@ -1,0 +1,40 @@
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Charts
+metadata:
+  name: airgap-charts-aistore
+spec:
+  charts:
+    - name: ais-operator
+      repoURL: https://nvidia.github.io/ais-k8s/charts/
+      version: 1.5.0
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Files
+metadata:
+  name: rancher-airgap-files-aistore
+spec:
+  files:
+    - path: https://github.com/NVIDIA/ais-k8s/raw/refs/heads/main/operator/config/samples/ais_v1beta1_aistore.yaml
+      name: aistore_basic.yaml
+    - path: https://github.com/NVIDIA/ais-k8s/raw/refs/heads/main/operator/config/samples/ais_v1beta1_aistore_tls.yaml
+      name: aistore_tls.yaml
+    - path: https://github.com/NVIDIA/ais-k8s/raw/refs/heads/main/operator/config/samples/ais_v1beta1_aistore_tls_certmanager_csi.yaml
+      name: aistore_certmanager_csi.yaml
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Images
+metadata:
+  name: airgap-images-aistore
+spec:
+  images:
+    - name: aistorage/aisnode:v3.25
+    - name: aistorage/ais-init:v1.2.0
+    - name: aistorage/ais-operator:v1.5.0
+    - name: gcr.io/kubebuilder/kube-rbac-proxy:v0.5.0
+    - name: aistorage/ais-operator-helper:latest
+    - name: aistorage/authn:v3.24
+    - name: aistorage/ais-util:v3.24
+    - name: aistorage/cluster-minimal:v3.24
+    - name: aistorage/admin:v3.24-rc2
+# I couldn't find a definitive list, so this is probably incomplete
