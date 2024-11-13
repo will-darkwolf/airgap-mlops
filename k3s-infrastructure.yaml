@@ -1,0 +1,25 @@
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Files
+metadata:
+  name: rancher-airgap-files-k3s
+spec:
+  files:
+    - path: https://get.k3s.io
+      name: installer.sh
+    - path: https://github.com/k3s-io/k3s/releases/download/v1.31.2+k3s1/k3s
+      name: k3s-v1.31.2+k3s1
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Images
+metadata:
+  name: airgap-images-k3s
+spec:
+  images:
+    - name: docker.io/rancher/klipper-helm:v0.9.3-build20241008
+    - name: docker.io/rancher/klipper-lb:v0.4.9
+    - name: docker.io/rancher/local-path-provisioner:v0.0.30
+    - name: docker.io/rancher/mirrored-coredns-coredns:1.11.3
+    - name: docker.io/rancher/mirrored-library-busybox:1.36.1
+    - name: docker.io/rancher/mirrored-library-traefik:2.11.10
+    - name: docker.io/rancher/mirrored-metrics-server:v0.7.2
+    - name: docker.io/rancher/mirrored-pause:3.6
