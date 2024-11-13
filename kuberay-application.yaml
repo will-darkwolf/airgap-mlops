@@ -1,0 +1,40 @@
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Charts
+metadata:
+  name: airgap-charts-kuberay
+spec:
+  charts:
+    - name: kuberay-operator
+      repoURL: https://ray-project.github.io/kuberay-helm/
+      version: 1.2.2
+    - name: ray-cluster
+      repoURL: https://ray-project.github.io/kuberay-helm/
+      version: 1.2.2
+    - name: kuberay-apiserver
+      repoURL: https://ray-project.github.io/kuberay-helm/
+      version: 1.2.2
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Images
+metadata:
+  name: airgap-images-kuberay-operator
+spec:
+  images:
+    - name: quay.io/kuberay/operator:v1.2.2
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Images
+metadata:
+  name: airgap-images-kuberay-apiserver
+spec:
+  images:
+    - name: quay.io/kuberay/apiserver:v1.2.2
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Images
+metadata:
+  name: airgap-images-ray-cluster
+spec:
+  images:
+    - name: rayproject/ray:2.9.0

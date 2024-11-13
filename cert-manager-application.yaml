@@ -1,0 +1,30 @@
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Charts
+metadata:
+  name: airgap-charts-certmanager
+spec:
+  charts:
+    - name: cert-manager
+      repoURL: https://charts.jetstack.io
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Images
+metadata:
+  name: airgap-images-cert-manager
+spec:
+  images:
+    - name: quay.io/jetstack/cert-manager-cainjector:v1.16.1
+    - name: quay.io/jetstack/cert-manager-controller:v1.16.1
+    - name: quay.io/jetstack/cert-manager-webhook:v1.16.1
+---
+# apiVersion: content.hauler.cattle.io/v1alpha1
+# kind: Files
+# metadata:
+#   name: airgap-files-cert-manager
+# spec:
+#   files:
+#     - path: https://raw.githubusercontent.com/zackbradys/code-templates/main/k8s/yamls/longhorn-encrypted-sc.yaml
+#       name: longhorn-encrypted-sc.yaml
+#     - path: https://raw.githubusercontent.com/zackbradys/code-templates/main/k8s/yamls/longhorn-encrypted-volume.yaml
+#       name: longhorn-encrypted-volume.yaml

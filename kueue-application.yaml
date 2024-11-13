@@ -1,0 +1,29 @@
+# apiVersion: content.hauler.cattle.io/v1alpha1
+# kind: Files
+# metadata:
+#   name: airgap-files-kueue
+# spec:
+#   files:
+#     - path: https://raw.githubusercontent.com/zackbradys/code-templates/main/k8s/yamls/longhorn-encrypted-sc.yaml
+#       name: longhorn-encrypted-sc.yaml
+#     - path: https://raw.githubusercontent.com/zackbradys/code-templates/main/k8s/yamls/longhorn-encrypted-volume.yaml
+#       name: longhorn-encrypted-volume.yaml
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Charts
+metadata:
+  name: airgap-charts-kueue
+spec:
+  charts:
+    - name: kueue
+      repoURL: oci://us-central1-docker.pkg.dev/k8s-staging-images/charts
+      version: v0.9.0
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Images
+metadata:
+  name: airgap-images-kueue
+spec:
+  images:
+    - name: gcr.io/kubebuilder/kube-rbac-proxy:v0.8.0
+    - name: us-central1-docker.pkg.dev/k8s-staging-images/kueue/kueue:v0.9.0
