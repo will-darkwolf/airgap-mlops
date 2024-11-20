@@ -1,0 +1,36 @@
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Files
+metadata:
+  name: kubeflow-model-files
+spec:
+  files:
+    - path: https://github.com/kubeflow/manifests/archive/refs/tags/v1.9.1.zip
+      name: kubeflow-manifests.zip
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Images
+metadata:
+  name: airgap-images-aistore
+spec:
+  images:
+    - name: gcr.io/ml-pipeline/api-server:2.3.0
+    - name: gcr.io/ml-pipeline/application-crd-controller:20231101
+    - name: gcr.io/ml-pipeline/argoexec:v3.4.17-license-compliance
+    - name: gcr.io/ml-pipeline/cache-deployer:2.3.0
+    - name: gcr.io/ml-pipeline/cache-server:2.3.0
+    - name: gcr.io/ml-pipeline/frontend:2.3.0
+    - name: gcr.io/ml-pipeline/inverse-proxy-agent:2.3.0
+    - name: gcr.io/ml-pipeline/metadata-envoy:2.3.0
+    - name: gcr.io/ml-pipeline/metadata-writer:2.3.0
+    - name: gcr.io/ml-pipeline/minio:RELEASE.2019-08-14T20-37-41Z-license-compliance
+    - name: gcr.io/ml-pipeline/mysql:8.0.26
+    - name: gcr.io/ml-pipeline/persistenceagent:2.3.0
+    - name: gcr.io/ml-pipeline/scheduledworkflow:2.3.0
+    - name: gcr.io/ml-pipeline/viewer-crd-controller:2.3.0
+    - name: gcr.io/ml-pipeline/visualization-server:2.3.0
+    - name: gcr.io/ml-pipeline/workflow-controller:v3.4.17-license-compliance
+    - name: gcr.io/tfx-oss-public/ml_metadata_store_server:1.14.0
+    - name: kubeflow/model-registry:latest
+    - name: mysql:8.0.3
+    - name: postgres:latest
