@@ -1,0 +1,19 @@
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Charts
+metadata:
+  name: jupyterhub-charts-kueue
+spec:
+  charts:
+    - name: jupyterhub
+      repoURL: https://jupyterhub.github.io/helm-chart/
+      version: 4.0.1-0.dev.git.6880.h3d7f40af
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Images
+metadata:
+  name: airgap-images-jupyterhub
+spec:
+  images:
+    - name: quay.io/jupyterhub/k8s-network-tools:4.0.1-0.dev.git.6864.hfc323db4
+    - name: quay.io/jupyterhub/k8s-singleuser-sample:4.0.1-0.dev.git.6880.h3d7f40af
+

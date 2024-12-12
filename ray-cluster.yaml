@@ -1,0 +1,58 @@
+apiVersion: ray.io/v1alpha1
+kind: RayCluster
+metadata:
+  name: raycluster-complete
+spec:
+  rayVersion: "2.3.0"
+  enableInTreeAutoscaling: true
+  autoscalerOptions:
+     ...
+  headGroupSpec:
+    serviceType: ClusterIP # Options are ClusterIP, NodePort, and LoadBalancer
+    rayStartParams:
+      dashboard-host: "0.0.0.0"
+      ...
+    template: # Pod template
+        metadata: # Pod metadata
+        spec: # Pod spec
+            containers:
+            - name: ray-head
+              image: rayproject/ray-ml:2.3.0
+              resources:
+                limits:
+                  cpu: 14
+                  memory: 54Gi
+                requests:
+                  cpu: 14
+                  memory: 54Gi
+              # Keep this preStop hook in each Ray container config.
+              lifecycle:
+                preStop:
+                  exec:
+                    command: ["/bin/sh","-c","ray stop"]
+              ports: # Optional service port overrides
+              - containerPort: 6379
+                name: gcs
+              - containerPort: 8265
+                name: dashboard
+              - containerPort: 10001
+                name: client
+              - containerPort: 8000
+                name: serve
+                ...
+  workerGroupSpecs:
+  - groupName: small-group
+    replicas: 1
+    minReplicas: 1
+    maxReplicas: 5
+    rayStartParams:
+        ...
+    template: # Pod template
+      spec:
+        ...
+  # Another workerGroup
+  - groupName: medium-group
+    ...
+  # Yet another workerGroup, with access to special hardware perhaps.
+  - groupName: gpu-group
+    ...

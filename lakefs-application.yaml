@@ -1,0 +1,17 @@
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Charts
+metadata:
+  name: lakefs-charts-kueue
+spec:
+  charts:
+    - name: lakefs
+      repoURL: https://charts.lakefs.io
+      version: 1.3.23
+---
+apiVersion: content.hauler.cattle.io/v1alpha1
+kind: Images
+metadata:
+  name: airgap-images-kueue
+spec:
+  images:
+    - name: treeverse/lakefs:1.44.0
